@@ -44,8 +44,7 @@
 // }
 // let a = 5;
 // let b = 8;
-console.log(add(a,b)); //Or: console.log(add(5,8)) >>Truyền thẳng đối số vào
-//NOTE: Trước khi chạy file nhớ ấn lệnh tsc (tsc + mũi tên lên) để dịch code từ js sang ts
+
 
 //Custom type or Type Aliases: 
 //Custom Types: Tự tạo ra một kiểu dữ liệu, có thể re-use nhiều lần
@@ -109,60 +108,80 @@ console.log(add(a,b)); //Or: console.log(add(5,8)) >>Truyền thẳng đối s�
 
 //Merge type: có 2 cách để merge type: dùng keyword type và interface 
 //C1: Keyword type:
-type Admin = {
-    permissions: string[]
-};
+// type Admin = {
+//     permissions: string[]
+// };
 
-type AppUser = {
-    userName: string
-};
+// type AppUser = {
+//     userName: string
+// };
 
-type AppAdmin = Admin & AppUser;
+// type AppAdmin = Admin & AppUser;
 
-//C2: interface: 
-interface Admin1 {
-    permissions: string []
-};
+// //C2: interface: 
+// interface Admin1 {
+//     permissions: string []
+// };
 
-interface AppUser1 {
-    userName: string
-};
+// interface AppUser1 {
+//     userName: string
+// };
 
-interface AppAdmin1 extends Admin1, AppUser1 {
-    //can add any property at here or leave empty
-};
+// interface AppAdmin1 extends Admin1, AppUser1 {
+//     //can add any property at here or leave empty
+// };
 
-let admin: AppAdmin1;
-admin = {
-    permissions: ['login', 'read', 'edit', 'delete'],
-    userName: 'Hannah'
-};
+// let admin1: AppAdmin1;
+// admin1 = {
+//     permissions: ['login', 'read', 'edit', 'delete'],
+//     userName: 'Hannah'
+// };
 
 
-//Literal Type: Cho phép người dùng chỉ định các giá trị cụ thể mà một biến có thể chứa
-//Literal type cho biến: 
-let role: 'CEO' | 'COO' | 'Manager';
-role = 'CEO'; //hợp lệ
-// role = 'HR'; //không hợp lệ
+// //Literal Type: Cho phép người dùng chỉ định các giá trị cụ thể mà một biến có thể chứa
+// //Literal type cho biến: 
+// let role1: 'CEO' | 'COO' | 'Manager';
+// role1 = 'CEO'; //hợp lệ
+// // role1 = 'HR'; //không hợp lệ
 
-//Literal Type cho object: 
-type userRole = {
-    role: 'CEO' | 'COO' | 'Manager';
-    level: 1 | 2 | 3;
-};
-
-let user1: userRole = {
-    role: 'CEO',
-    level: 1
-};
-console.log(user1);
+// //Literal Type cho object: 
+// type userRole = {
+//     role: 'CEO' | 'COO' | 'Manager';
+//     level: 1 | 2 | 3;
+// };
 
 // let user11: userRole = {
-//     role: 'HR', Lỗi: giá trị 'HR' không được gán cho biến role
-//     level: 3
-// }; 
+//     role: 'CEO',
+//     level: 1
+// };1
+// console.log(user11);
+
+// // let user11: userRole = {
+// //     role: 'HR', Lỗi: giá trị 'HR' không được gán cho biến role
+// //     level: 3
+// // }; 
  
 
+//Generic type: 
+//Để khởi tạo các hàm, lớp, interface có thể làm việc với nhiều kiểu dữ liệu khác nhau thay vì cố định một kiểu dữ liệu
+//Generic cho function: 
+function adding<T>(a:T): T {
+    return a;
+}
 
+let output1 = adding<string>("Hello, my name is Hannah");
+// let output2 = adding<number>(24);
 
+console.log(output1);
+
+//Generic Interface: 
+interface animal<T, U> {
+    name: T;
+    age: U;
+}
+const animal1: animal<string, number> = {
+    name: "dog",
+    age: 2
+};
+console.log(animal1);
 
